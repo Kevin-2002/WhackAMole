@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WhackAMole.MainPage">
+    
+    <Grid>
+        <!--grid used to layer image in the background-->
+        <Image Source="farm.png"></Image>
+        
+        <!--Stacklayout centers everything-->
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <!--lines 1, 2, 3, and 4-->
+            <Label Text="Time: " FontSize="18"/>
+            <Label x:Name="LblTimer" Text="" FontSize="30"/>
+            <Label Text="score: " FontSize="18"/>
+            <Label x:Name="LblScore" Text="" FontSize="30"/>
+
+            <!--line5-->
+            <HorizontalStackLayout>
+                <Button x:Name="Btn4x4" Text="4X4" WidthRequest="66" Clicked="Btn4x4_Clicked"/>
+                <Button x:Name="BtnStart" Text="Start" WidthRequest="66" Clicked="BtnStart_Clicked"/>
+                <Button x:Name="Btn5x5" Text="5X5" WidthRequest="66" Clicked="Btn5x5_Clicked"/>
+            </HorizontalStackLayout>
+
+            <!--line6-->
+            <HorizontalStackLayout>
+                <Grid x:Name="Grid4x4" BackgroundColor="Red"
+                 WidthRequest="200" HeightRequest="200" IsVisible="true">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="ImgMole4x4" Source="mole.png" HeightRequest="50" WidthRequest="50" IsVisible="false">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped">
+                            </TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Grid x:Name="Grid5x5" BackgroundColor="Blue"
+                 WidthRequest="250" HeightRequest="250" IsVisible="false">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="ImgMole5x5" Source="mole.png" HeightRequest="50" WidthRequest="50" IsVisible="false">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped">
+                            </TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </HorizontalStackLayout>
+            
+            <!--line7 and 8-->
+            <HorizontalStackLayout>
+                <Button x:Name="BtnReset" Text="Reset" WidthRequest="100" Clicked="BtnReset_Clicked" IsEnabled="False"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <!--note &#x0a; is the command for next line-->
+                <Label x:Name="LblResetQuestion" Text="Are you sure you want to reset the game? &#x0a;(Click the reset button again to confirm)" IsVisible="false" FontSize="24"></Label>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout x:Name="ResetPrompt" IsVisible="false">
+                <Label Text="yes " FontSize="24"/>
+                <RadioButton x:Name="RdoBtnYes" IsChecked="False"/>
+                <Label Text="no " FontSize="24"/>
+                <RadioButton x:Name="RdoBtnNo" IsChecked="False"/>
+            </HorizontalStackLayout>
+        </StackLayout>
+    </Grid>
+</ContentPage>
